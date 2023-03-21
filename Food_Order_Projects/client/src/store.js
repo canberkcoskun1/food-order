@@ -5,12 +5,14 @@ import thunk from "redux-thunk";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { getAllBurgersReducer } from "./reducers/burgerReducers";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { addToCartReducer } from "./reducers/cartReducers";
 
 //5- Bütün reducerları finalReducerda toplayıp yayın yapacağız.
 
 // başlangıçta boş obje olacak daha sonra dolduracağız. LocalStorage'da
 const finalReducer = combineReducers({
-  getAllBurgersReducer: getAllBurgersReducer, //(11- verilen isim:  değeri)
+  getAllBurgersReducer: getAllBurgersReducer,
+  addToCartReducer: addToCartReducer, //(11- verilen isim:  değeri)
 });
 //13- compoose hata alırsak yukarıda olacak.
 const compose = composeWithDevTools({});
