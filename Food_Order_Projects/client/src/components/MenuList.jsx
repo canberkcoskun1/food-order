@@ -21,6 +21,7 @@ function MenuList({ menu }) {
         className="card m-auto my-3 shadow-lg p-3 bg-body-tertiary rounded"
         style={{ width: "20rem" }}
       >
+        {/* Resmin üstüne tıklayınca detay gözüksün. */}
         <img
           src={menu.img}
           alt=""
@@ -50,7 +51,7 @@ function MenuList({ menu }) {
           </div>
           <div className="col-md-6">
             <h5>Miktar</h5>
-            {/* Miktara onChange eventi eklenip yukarıda tanımlandı */}
+            {/* Miktara onChange eventi eklenip yukarıda tanımlandı. Burada kaç adet seçeceğimiz isteniyor bu yüzden bir mapleme işlemi ve onun içinde array oluşturmamız gerekiyor. */}
             <select
               name=""
               id=""

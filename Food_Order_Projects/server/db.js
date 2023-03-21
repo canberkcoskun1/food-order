@@ -1,3 +1,5 @@
+// 1- MongoDB Bağlantısı sağlamak için mongoose çağırılır
+
 const mongoose = require("mongoose");
 
 //connection'ın açık kapalı olmasına göre iki farklı opsiyon verdiğimiz veritabanını dinleyen metotları yazalım.

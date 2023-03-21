@@ -16,16 +16,7 @@ const burgerModel = require("./models/BurgerModel");
 app.use(express.json());
 app.use(cors());
 
-//7-getFoods servisi
-app.get("/getFoods", async (req, res) => {
-  try {
-    const foods = await burgerModel.find({});
-    res.send(foods);
-    // console.log(users);
-  } catch (err) {
-    console.log(err);
-  }
-});
+//7-getFoods servisi burgersRoute içine aktarıldı.
 
 //5- Serverımızı inşa edeceğimiz portu belirledik.
 var port = 4000;

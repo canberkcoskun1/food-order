@@ -1,4 +1,4 @@
-//1-
+//1-MongoDB yi bağlamak için mongoose çağılır.
 const mongoose = require("mongoose");
 
 //2-Çok fazla veri var dikkatli gideceğiz
