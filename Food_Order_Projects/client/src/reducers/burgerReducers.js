@@ -2,6 +2,8 @@
 
 //10- her zaman başına 1 tane state alır, state değiştikce yeniler kendini. ikinci parametresi de actiondur
 
+// useSelector ile anasayfadayken bu verileri çağırabiliyoruz.
+
 export const getAllBurgersReducer = (state = { burgers: [] }, action) => {
   switch (action.type) {
     case "GET_BURGERS_REQUEST":

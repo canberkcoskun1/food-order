@@ -3,12 +3,25 @@ export const addToCartReducer = (state = { cartItems: [] }, action) => {
 
   switch (action.type) {
     case "ADD_TO_CART":
-      return {
-        ...state,
-        cartItems: [...state.cartItems, action.payload],
-        //burada hazır dizi yok, sıfırdan dizi oluşturuyoruz, burgerReducer'dan farkı budur.
-      };
-// Sepette ürün silme işlemi;
+      const mevcutIse = state.cartItems.find(
+        (sepet) => sepet._id === action.payload._id
+      );
+      if (mevcutIse) {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((sepet) =>
+            sepet._id === action.payload._id ? action.payload : sepet
+          ),
+        };
+      } else {
+        return {
+          //burada hazır dizi yok, sıfırdan dizi oluşturuyoruz, burgerReducer'dan farkı budur.
+          ...state,
+          cartItems: [...state.cartItems, action.payload],
+        };
+      }
+
+    // Sepette ürün silme işlemi;
 
     case "DELETE_FROM_CART":
       return {

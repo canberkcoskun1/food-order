@@ -15,6 +15,7 @@ function HomePage() {
   //Reducer'a gittik ve burgerReducerdan loading ve burgers çekildi.
 
   const { burgers, loading } = burgerState;
+  // const burgers1 = burgerState.burgers --> Diğer yazım biçimi, aynı işlemi sağlar.
 
   //16-
   const dispatch = useDispatch();
