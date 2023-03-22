@@ -1,9 +1,3 @@
-* {
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
-}
-
 body {
   margin: 0;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -29,7 +23,7 @@ code {
 }
 /* Card tasarım */
 .card {
-  height: 410px;
+  height: 510px;
   padding-bottom: 50px !important;
 }
 .card img {

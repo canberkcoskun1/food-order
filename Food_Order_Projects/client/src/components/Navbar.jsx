@@ -1,9 +1,8 @@
-//Navbar-->sepette kaç ürün olduğuna erişeceğiz ve bu yüzden state lazım.
-
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+//Navbar-->sepette kaç ürün olduğuna erişeceğiz ve bu yüzden state lazım.
 function Navbar() {
   const cartState = useSelector((state) => state.addToCartReducer);
 

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 import { addToCartAction } from "../actions/cartActions";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MenuList({ menu }) {
   /*Modal için UseStateler*/
@@ -22,10 +24,25 @@ function MenuList({ menu }) {
   const dispatch = useDispatch();
 
   const addToCart = () => {
-    dispatch(addToCartAction(menu, miktar, ozellik));
+    if (miktar > 0) {
+      toast("Sepete Ürün Eklendi");
+      dispatch(addToCartAction(menu, miktar, ozellik));
+    }
   };
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="dark"
+      />
       <div
         className="card m-auto my-3 shadow-lg p-3 bg-body-tertiary rounded"
         style={{ width: "20rem" }}

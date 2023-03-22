@@ -16,8 +16,17 @@ const finalReducer = combineReducers({
 });
 //13- compoose hata alırsak yukarıda olacak.
 const compose = composeWithDevTools({});
-//4-
-const initialState = {};
+
+//Direk reducer içerisine yolladık
+
+const cartItems = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+const initialState = {
+  addToCartReducer: {
+    cartItems: cartItems,
+  },
+};
 const store = createStore(
   //12-çağıracağız, Bu 3 yapıyı kullanacağız anlamına gelir.
   finalReducer,
