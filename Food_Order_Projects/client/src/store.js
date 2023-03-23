@@ -6,13 +6,16 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import { getAllBurgersReducer } from "./reducers/burgerReducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { addToCartReducer } from "./reducers/cartReducers";
-
+import { registerUserReducer } from "./reducers/userReducers";
+import { loginUserReducer } from "./reducers/userReducers";
 //5- Bütün reducerları finalReducerda toplayıp yayın yapacağız.
 
 // başlangıçta boş obje olacak daha sonra dolduracağız. LocalStorage'da
 const finalReducer = combineReducers({
   getAllBurgersReducer: getAllBurgersReducer,
-  addToCartReducer: addToCartReducer, //(11- verilen isim:  değeri)
+  addToCartReducer: addToCartReducer,
+  registerUserReducer: registerUserReducer, //(11- verilen isim:  değeri)
+  loginUserReducer: loginUserReducer,
 });
 //13- compoose hata alırsak yukarıda olacak.
 const compose = composeWithDevTools({});
@@ -22,9 +25,16 @@ const compose = composeWithDevTools({});
 const cartItems = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
+const currentUser = localStorage.getItem("currentUser")
+  ? JSON.parse(localStorage.getItem("currentUser"))
+  : null;
+
 const initialState = {
   addToCartReducer: {
     cartItems: cartItems,
+  },
+  loginUserReducer: {
+    currentUser: currentUser,
   },
 };
 const store = createStore(

@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-//Navbar-->sepette kaç ürün olduğuna erişeceğiz ve bu yüzden state lazım.
 function Navbar() {
   const cartState = useSelector((state) => state.addToCartReducer);
 
@@ -34,7 +33,18 @@ function Navbar() {
                 </Link>
               </li>
             </ul>
+
             <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Giriş Yap <i class="fa-solid fa-right-to-bracket"></i>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/register">
+                  Kayıt Ol <i class="fa-solid fa-registered"></i>
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/sepet">
                   Sepet

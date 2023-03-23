@@ -18,9 +18,12 @@ app.use(cors());
 
 //7-getFoods servisi burgersRoute içine aktarıldı.
 // Servisleri route ile çağırma
+//burger servisleri
 const burgersRoute = require("./routes/burgersRoute");
+const usersRoute = require("./routes/userRoute");
 app.use("/api/burgers", burgersRoute);
-
+// user Servisleri
+app.use("/api/users", usersRoute);
 //5- Serverımızı inşa edeceğimiz portu belirledik.
 var port = 4000;
 app.listen(4000, () => {
