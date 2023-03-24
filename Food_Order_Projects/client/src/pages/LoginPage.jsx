@@ -14,7 +14,8 @@ function LoginPage() {
   const userState = useSelector((state) => state.loginUserReducer);
   const { success, error, currentUser, loading, users } = userState;
 
-  const loginHandler = async () => {
+  const loginHandler = (e) => {
+    e.preventDefault();
     if (mail == "" || pass == "") {
       Swal.fire("Eksik alanları doldurunuz.!");
     } else {
@@ -30,27 +31,29 @@ function LoginPage() {
   return (
     <div style={{ marginTop: "100px" }}>
       <div className="container w-50 bg-warning rounded shadow-lg d-flex flex-column justify-content-center p-5">
-        <h2 className="display-4">Kullanıcı Giriş Ekranı</h2>
+        <h4 className="display-4">Kullanıcı Giriş Ekranı</h4>
+        <form>
+          <input
+            type="email"
+            className="form-control my-3"
+            placeholder="Emailinizi Giriniz"
+            onChange={(e) => setMail(e.target.value)}
+          />
+          <input
+            type="password"
+            className="form-control my-3"
+            placeholder="Şifrenizi Giriniz"
+            onChange={(e) => setPass(e.target.value)}
+          />
 
-        <input
-          type="email"
-          className="form-control my-3"
-          placeholder="Emailinizi Giriniz"
-          onChange={(e) => setMail(e.target.value)}
-        />
-        <input
-          type="password"
-          className="form-control my-3"
-          placeholder="Şifrenizi Giriniz"
-          onChange={(e) => setPass(e.target.value)}
-        />
-
-        <button
-          className="btn btn-outline-danger w-50 m-auto"
-          onClick={loginHandler}
-        >
-          GİRİŞ YAP
-        </button>
+          <button
+            type="submit"
+            className="btn btn-outline-danger w-50 m-auto"
+            onClick={loginHandler}
+          >
+            GİRİŞ YAP
+          </button>
+        </form>
       </div>
     </div>
   );

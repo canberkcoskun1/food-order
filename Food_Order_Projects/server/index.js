@@ -21,10 +21,15 @@ app.use(cors());
 //burger servisleri
 const burgersRoute = require("./routes/burgersRoute");
 const usersRoute = require("./routes/userRoute");
+const ordersRoute = require("./routes/ordersRoute");
 app.use("/api/burgers", burgersRoute);
 // user Servisleri
 app.use("/api/users", usersRoute);
 //5- Serverımızı inşa edeceğimiz portu belirledik.
+
+// Order Services
+app.use("/api/orders", ordersRoute);
+
 var port = 4000;
 app.listen(4000, () => {
   console.log(`Food order serverı ${port} portunda başarıyla ayağa kalktı`);
