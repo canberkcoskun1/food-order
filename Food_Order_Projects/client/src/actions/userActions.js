@@ -18,6 +18,7 @@ export const registerUserAction = (user) => async (dispatch) => {
       showConfirmButton: false,
       timer: 1500,
     });
+
     window.location.href = "/login";
   } catch (error) {
     dispatch({ type: "USER_REGISTER_FAILED", payload: error });
@@ -29,21 +30,21 @@ export const registerUserAction = (user) => async (dispatch) => {
   }
 };
 
-// LOGIN -> getState kullanıcının localStorage da tutulması gerekiyor.
+// LOGIN_ACTION -> getState kullanıcının localStorage da tutulması gerekiyor.
 export const loginUserAction = (user) => async (dispatch, getState) => {
   dispatch({ type: "USER_LOGIN_REQUEST" });
+
   try {
     const response = await axios.post(
       "http://localhost:4000/api/users/login",
       user
     );
     console.log("Login response", response);
-
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: response.data });
     Swal.fire({
       position: "center",
       icon: "success",
-      title: "Giriş Başarılı",
+      title: "Kullanıcı Girişi Başarılı",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -54,7 +55,7 @@ export const loginUserAction = (user) => async (dispatch, getState) => {
     Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: "Hatalı Giriş Yaptınız! Tekrar Deneyiniz.",
+      text: "Kullanıcı Adı ya da Şifre Hatalı",
     });
   }
 };
@@ -62,5 +63,39 @@ export const loginUserAction = (user) => async (dispatch, getState) => {
 export const logoutUserAction = () => {
   localStorage.removeItem("currentUser");
   window.location.href = "/";
-  
+};
+
+// GET_ALL_USERS ACTION
+export const getAllUsersAction = () => async (dispatch) => {
+  dispatch({ type: "GET_ALL_USERS_REQUEST" });
+
+  try {
+    const response = await axios.get(
+      "http://localhost:4000/api/users/getAllUsers"
+    );
+    console.log(response);
+
+    dispatch({ type: "GET_ALL_USERS_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "GET_ALL_USERS_FAILED", payload: error });
+  }
+};
+// DELETE USER ACTION
+export const deleteUserAction = (userid) => async (dispatch) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:4000/api/users/deleteUser",
+      { userid }
+    );
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Silme İşlemi Başarılı",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
 };

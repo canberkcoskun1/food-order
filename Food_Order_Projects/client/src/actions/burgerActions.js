@@ -65,3 +65,20 @@ export const addBurgerAction = (menu) => async (dispatch) => {
     dispatch({ type: "ADD_BURGERS_FAILED", payload: error });
   }
 };
+
+// ADMINPANEL_EDIT_BURGERS
+export const getBurgerByIdAction = (burgerid) => async (dispatch) => {
+  dispatch({ type: "GET_BURGER_BY_ID_REQUEST" });
+
+  try {
+    const response = await axios.post(
+      "http://localhost:4000/api/burgers/getBurgerById",
+      { burgerid }
+    );
+
+    console.log(response);
+    dispatch({ type: "GET_BURGER_BY_ID_SUCCESS", payload: response.data });
+  } catch (error) {
+    dispatch({ type: "GET_BURGER_BY_ID_FAILED", payload: error });
+  }
+};

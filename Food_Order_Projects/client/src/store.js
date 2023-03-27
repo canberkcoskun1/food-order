@@ -3,29 +3,42 @@
 
 import thunk from "redux-thunk";
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { getAllBurgersReducer } from "./reducers/burgerReducers";
+import {
+  addBurgerReducer,
+  getAllBurgersReducer,
+  getBurgerByIdReducer,
+} from "./reducers/burgerReducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { addToCartReducer } from "./reducers/cartReducers";
-import { registerUserReducer } from "./reducers/userReducers";
-import { loginUserReducer } from "./reducers/userReducers";
-import { checkoutOrderReducer } from "./reducers/orderReducers";
-import { getUserOrdersReducer } from "./reducers/orderReducers";
+import {
+  getAllUsersReducer,
+  loginUserReducer,
+  registerUserReducer,
+} from "./reducers/userReducers";
+import {
+  checkoutOrderReducer,
+  getUserOrdersReducer,
+} from "./reducers/orderReducers";
+
 //5- Bütün reducerları finalReducerda toplayıp yayın yapacağız.
 
 // başlangıçta boş obje olacak daha sonra dolduracağız. LocalStorage'da
-const finalReducer = combineReducers({
-  getAllBurgersReducer: getAllBurgersReducer,
-  addToCartReducer: addToCartReducer,
-  registerUserReducer: registerUserReducer, //(11- verilen isim:  değeri)
-  loginUserReducer: loginUserReducer,
-  checkoutOrderReducer: checkoutOrderReducer,
-  getUserOrdersReducer: getUserOrdersReducer,
-});
+
 //13- compoose hata alırsak yukarıda olacak.
 const compose = composeWithDevTools({});
 
 //Direk reducer içerisine yolladık
-
+const finalReducer = combineReducers({
+  getAllBurgersReducer: getAllBurgersReducer,
+  addToCartReducer: addToCartReducer,
+  registerUserReducer: registerUserReducer,
+  loginUserReducer: loginUserReducer,
+  checkoutOrderReducer: checkoutOrderReducer,
+  getUserOrdersReducer: getUserOrdersReducer,
+  getAllUsersReducer: getAllUsersReducer,
+  addBurgerReducer: addBurgerReducer,
+  getBurgerByIdReducer: getBurgerByIdReducer,
+});
 const cartItems = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];

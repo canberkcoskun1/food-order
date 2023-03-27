@@ -40,9 +40,22 @@ router.post("/addBurger", async (req, res) => {
       kategori: menu.kategori,
       fiyat: [menu.fiyat], // dizi olarak gönderildi.
     });
-    
+
     await newMenu.save();
     res.send("Menü Ekleme Başarılı");
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+});
+
+// GET_BURGER_BY_ID SERVICE
+
+router.post("/getBurgerById", async (req, res) => {
+  const burgerid = req.body.burgerid;
+
+  try {
+    const burger = await burgerModel.findOne({ _id: burgerid });
+    res.send(burger);
   } catch (error) {
     res.status(400).json({ message: error });
   }
