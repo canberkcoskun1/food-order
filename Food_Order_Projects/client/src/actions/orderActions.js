@@ -21,6 +21,7 @@ export const checkoutOrderAction =
       console.log("Response", response);
       dispatch({ type: "CHECKOUT_ORDER_SUCCES", payload: response.data }); //API ISLEMLERINDE FIX
       localStorage.removeItem("cartItems");
+      window.location.href = "/myorders";
     } catch (error) {
       dispatch({ type: "CHECKOUT_ORDER_FAILED", payload: error });
       console.log(error);
