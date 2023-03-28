@@ -54,8 +54,8 @@ export const addBurgerReducer = (state = {}, action) => {
   }
 };
 
-// ADMINPANEL_EDIT_BURGER_REDUCER
-export const getBurgerByIdReducer = (state = {}, action) => {
+// ADMIN-PANEL GET_BURGER_BY_ID_REDUCER
+export const getBurgerByIdReducer = (state = { burger: null }, action) => {
   switch (action.type) {
     case "GET_BURGER_BY_ID_REQUEST":
       return {
@@ -69,6 +69,31 @@ export const getBurgerByIdReducer = (state = {}, action) => {
         burger: action.payload,
       };
     case "GET_BURGER_BY_ID_FAILED":
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+// ADMIN-PANEL EDIT_BURGER_REDUCER
+
+export const editBurgerReducer = (state = { editedBurger: null }, action) => {
+  switch (action.type) {
+    case "EDIT_BURGER_REQUEST":
+      return {
+        loading: true,
+        ...state,
+      };
+    case "EDIT_BURGER_SUCCESS":
+      return {
+        loading: false,
+        success: true,
+        editBurger: action.payload,
+      };
+    case "EDIT_BURGER_FAILED":
       return {
         loading: false,
         error: action.payload,

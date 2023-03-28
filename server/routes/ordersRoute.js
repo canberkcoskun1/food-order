@@ -64,9 +64,32 @@ router.post("/getusersorders", async (req, res) => {
     const orders = await OrderModel.find({ userid: userid }).sort({ _id: -1 }); // -1 -> En son siparişleri göstermemizi sağlar.
     res.send(orders);
   } catch (error) {
-  res.status(400).json({message: "Siparişlere Erişilemiyor."})
+    res.status(400).json({ message: "Siparişlere Erişilemiyor." });
   }
 });
+// GET ALL ORDERS SERVICE
+
+router.get("/getAllOrders", async (req, res) => {
+  try {
+    const foods = await OrderModel.find({});
+    res.send(foods);
+  } catch (err) {
+    console.log(err);
+  }
+});
+// DELIVERY POST SERVICE
+
+router.post("/deliverOrder", async (req, res) => {
+  const orderid = req.body.orderid;
+
+  try {
+    const order = await OrderModel.findOne({ _id: orderid });
+    order.isDelivered = true;
+    await order.save();
+    res.send("Sipariş Başarıyla Teslim Edildi");
+  } catch (error) {
+    res.status(400).json({ message: "Siparişlere Erişilemiyor", error });
+  }
+});
+
 module.exports = router;
-
-

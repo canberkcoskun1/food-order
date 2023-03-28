@@ -61,4 +61,21 @@ router.post("/getBurgerById", async (req, res) => {
   }
 });
 
+// EDIT_BURGER_BY_ID SERVICE
+router.post("/editBurger", async (req, res) => {
+  const editedBurger = req.body.editedBurger;
+  try {
+    const burger = await burgerModel.findOne({ _id: editedBurger._id });
+    burger.ad = editedBurger.ad;
+    burger.desc = editedBurger.desc;
+    burger.img = editedBurger.img;
+    burger.kategori = editedBurger.kategori;
+    burger.fiyat = [editedBurger.fiyat];
+    await burger.save();
+    res.send(burger);
+  } catch (error) {
+    res.status(400).json({ message: "Bir hata var!" });
+  }
+});
+
 module.exports = router;

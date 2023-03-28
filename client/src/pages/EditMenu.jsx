@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getBurgerById, getBurgerByIdAction } from "../actions/burgerActions";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import {
+  editBurgerAction,
+  getBurgerById,
+  getBurgerByIdAction,
+} from "../actions/burgerActions";
 
 function EditMenu() {
   const dispatch = useDispatch();
   const { burgerid } = useParams();
-
   const getburgersbyidstate = useSelector(
     (state) => state.getBurgerByIdReducer
   );
   const { burger } = getburgersbyidstate;
   console.log("urger state", burger);
+
+  const getAllBurgers = useSelector((state) => state.getAllBurgersReducer);
+
+  const allburgers = getAllBurgers.burgers;
 
   const [ad, setAd] = useState("");
   const [smallPrice, setSmallPrice] = useState("");
@@ -20,13 +28,39 @@ function EditMenu() {
   const [img, setImg] = useState("");
   const [desc, setDesc] = useState("");
   const [category, setCategory] = useState("et");
+  const navigate = useNavigate();
+
+  const editBurgerState = useSelector((state) => state.editBurgerReducer);
+  const { editedBurger } = editBurgerState;
 
   const formHandler = (e) => {
     e.preventDefault();
-  };
 
+    const editedBurger = {
+      _id: burgerid,
+      ad: ad,
+      img: img,
+      desc: desc,
+      fiyat: {
+        small: smallPrice,
+        medium: mediumPrice,
+        mega: megaPrice,
+      },
+      kategori: category,
+    };
+
+    dispatch(editBurgerAction(editedBurger));
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Menü Güncelleme Başarılı",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/admin/menulist");
+  };
   useEffect(() => {
-    if (burger._id == burgerid) {
+    if (burger?._id == burgerid) {
       setAd(burger.ad);
       setCategory(burger.kategori);
       setDesc(burger.desc);
@@ -37,7 +71,8 @@ function EditMenu() {
     } else {
       dispatch(getBurgerByIdAction(burgerid));
     }
-  }, []);
+  }, [burger, editedBurger]);
+
   return (
     <div>
       <form className="w-75 m-auto abz" onSubmit={formHandler}>

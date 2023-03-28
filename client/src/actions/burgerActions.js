@@ -9,7 +9,6 @@ export const getAllBurgers = () => async (dispatch) => {
     const response = await axios.get(
       "http://localhost:4000/api/burgers/getBurgers"
     );
-    console.log(response);
     dispatch({ type: "GET_BURGERS_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "GET_BURGERS_FAILED", payload: error });
@@ -46,7 +45,6 @@ export const deleteBurgerAction = (burgerid) => async (dispatch) => {
   }
 };
 
-
 // AdminPanel addBurgerAction
 
 export const addBurgerAction = (menu) => async (dispatch) => {
@@ -66,7 +64,7 @@ export const addBurgerAction = (menu) => async (dispatch) => {
   }
 };
 
-// ADMINPANEL_EDIT_BURGERS
+// ADMINPANEL_GET_ELEMENT_BY_ID_ACTION
 export const getBurgerByIdAction = (burgerid) => async (dispatch) => {
   dispatch({ type: "GET_BURGER_BY_ID_REQUEST" });
 
@@ -80,5 +78,22 @@ export const getBurgerByIdAction = (burgerid) => async (dispatch) => {
     dispatch({ type: "GET_BURGER_BY_ID_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "GET_BURGER_BY_ID_FAILED", payload: error });
+  }
+};
+// ADMIN_PANEL_EDIT_BURGER
+export const editBurgerAction = (editedBurger) => async (dispatch) => {
+  dispatch({ type: "EDIT_BURGER_REQUEST" });
+
+  try {
+    const response = await axios.post(
+      "http://localhost:4000/api/burgers/editBurger",
+      { editedBurger }
+    );
+
+    console.log(response);
+    dispatch({ type: "EDIT_BURGER_SUCCESS", payload: response.data });
+    window.location.href("/admin/menulist");
+  } catch (error) {
+    dispatch({ type: "EDIT_BURGER_FAILED", payload: error });
   }
 };

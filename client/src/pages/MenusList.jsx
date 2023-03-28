@@ -26,8 +26,8 @@ function MenusList() {
           </tr>
         </thead>
         <tbody>
-          {burgers.map((burger) => (
-            <tr>
+          {burgers.map((burger, idx) => (
+            <tr key={idx}>
               <td>{burger.ad}</td>
               <td>
                 Small: {burger.fiyat[0]["small"]}₺ <br />

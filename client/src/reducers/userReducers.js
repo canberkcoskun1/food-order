@@ -1,4 +1,5 @@
 // REGISTER
+
 export const registerUserReducer = (state = { users: [] }, action) => {
   switch (action.type) {
     case "USER_REGISTER_REQUEST":
@@ -23,7 +24,6 @@ export const registerUserReducer = (state = { users: [] }, action) => {
       return state;
   }
 };
-
 // LOGIN
 
 export const loginUserReducer = (state = {}, action) => {

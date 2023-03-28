@@ -7,6 +7,7 @@ import {
   addBurgerReducer,
   getAllBurgersReducer,
   getBurgerByIdReducer,
+  editBurgerReducer,
 } from "./reducers/burgerReducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { addToCartReducer } from "./reducers/cartReducers";
@@ -18,6 +19,8 @@ import {
 import {
   checkoutOrderReducer,
   getUserOrdersReducer,
+  getAllOrdersReducer,
+  deliverOrderReducer,
 } from "./reducers/orderReducers";
 
 //5- Bütün reducerları finalReducerda toplayıp yayın yapacağız.
@@ -38,6 +41,9 @@ const finalReducer = combineReducers({
   getAllUsersReducer: getAllUsersReducer,
   addBurgerReducer: addBurgerReducer,
   getBurgerByIdReducer: getBurgerByIdReducer,
+  editBurgerReducer: editBurgerReducer,
+  getAllOrdersReducer: getAllOrdersReducer,
+  deliverOrderReducer: deliverOrderReducer,
 });
 const cartItems = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
